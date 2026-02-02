@@ -13,7 +13,9 @@ def _build_parser() -> argparse.ArgumentParser:
         prog="remote-bash",
         description="Run a bash command on a remote host using ~/.ssh/config.",
     )
-    parser.add_argument("--host-alias", required=True, help="Host alias in ~/.ssh/config.")
+    parser.add_argument(
+        "--host-alias", required=True, help="Host alias in ~/.ssh/config."
+    )
     parser.add_argument("--command", required=True, help="Bash command to run.")
     parser.add_argument(
         "--timeout",

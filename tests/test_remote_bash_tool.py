@@ -6,11 +6,17 @@ import unittest
 from pathlib import Path
 
 from remote_bash_tool import tool
-from remote_bash_tool.ssh import connect_via_ssh_config, run_remote_command, _load_ssh_config
+from remote_bash_tool.ssh import (
+    _load_ssh_config,
+    connect_via_ssh_config,
+    run_remote_command,
+)
 
 
 class FakeResult:
-    def __init__(self, exit_status: int = 0, stdout: str = "", stderr: str = "") -> None:
+    def __init__(
+        self, exit_status: int = 0, stdout: str = "", stderr: str = ""
+    ) -> None:
         self.exit_status = exit_status
         self.stdout = stdout
         self.stderr = stderr

@@ -22,3 +22,8 @@ dev = [
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/remote_bash_tool"]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.14.14",
+]
