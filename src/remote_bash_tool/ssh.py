@@ -48,7 +48,12 @@ def _load_ssh_config(ssh_config_path: Path, host_alias: str) -> dict[str, Any]:
             key, value = parts[0].lower(), parts[1].strip()
             if key == "identityfile":
                 config.setdefault("identityfile", []).append(value)
-            elif key not in config and key in ("hostname", "user", "port", "proxycommand"):
+            elif key not in config and key in (
+                "hostname",
+                "user",
+                "port",
+                "proxycommand",
+            ):
                 config[key] = value
     return config
 
@@ -63,6 +68,7 @@ async def connect_via_ssh_config(
     config = _load_ssh_config(ssh_config_path, host_alias)
     asyncssh = _load_asyncssh()
     import re
+
     # Determine the actual host to connect to.
     # If 'hostname' is specified in the SSH config, use that.
     # Otherwise, use the provided host_alias, but validate it first for safety.
@@ -90,7 +96,7 @@ async def connect_via_ssh_config(
 
 async def _stream_reader(reader: Any, sink, buffer: list[str]) -> None:
     async for line in reader:
-        text = str(line)
+        text = line.decode("utf-8") if isinstance(line, bytes) else str(line)
         buffer.append(text)
         sink.write(text)
         sink.flush()
