@@ -8,7 +8,6 @@ from pathlib import Path
 from remote_bash_tool import tool
 from remote_bash_tool.ssh import (
     _load_ssh_config,
-    connect_via_ssh_config,
     run_remote_command,
 )
 

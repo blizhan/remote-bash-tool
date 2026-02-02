@@ -3,7 +3,6 @@ from __future__ import annotations
 import argparse
 import asyncio
 import json
-from typing import Any
 
 from remote_bash_tool.tool import run
 

@@ -6,3 +6,6 @@ lint:
 fmt:
 	uv run ruff check --select I --fix src tests
 	uv run ruff format src tests
+
+test:
+	uv run pytest -v
