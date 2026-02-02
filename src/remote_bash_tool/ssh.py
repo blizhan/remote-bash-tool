@@ -68,8 +68,24 @@ async def connect_via_ssh_config(
     ssh_config_path = ssh_config_path or (Path.home() / ".ssh" / "config")
     config = _load_ssh_config(ssh_config_path, host_alias)
     asyncssh = _load_asyncssh()
+    import re
+    # Determine the actual host to connect to.
+    # If 'hostname' is specified in the SSH config, use that.
+    # Otherwise, use the provided host_alias, but validate it first for safety.
+    _host = config.get("hostname")
+    if _host is None:
+        # Validate host_alias to prevent shell injection if it's used directly
+        # as the host in ProxyCommand expansion.
+        # Allow alphanumeric characters, hyphens, and dots.
+        if not re.fullmatch(r"^[a-zA-Z0-9.-]+$", host_alias):
+            raise ValueError(
+                f"Untrusted host alias '{host_alias}' contains invalid characters. "
+                "Only alphanumeric characters, hyphens, and dots are allowed."
+            )
+        _host = host_alias
+
     return await asyncssh.connect(
-        host=config.get("hostname", host_alias),
+        host=_host,
         port=int(config.get("port", 22)),
         username=config.get("user"),
         client_keys=config.get("identityfile"),
