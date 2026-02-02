@@ -12,5 +12,13 @@ dependencies = [
   "asyncssh>=2.14.2",
 ]
 
+[project.scripts]
+remote-bash = "remote_bash_tool.cli:main"
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=7.0.0",
+]
+
 [tool.hatch.build.targets.wheel]
 packages = ["src/remote_bash_tool"]
