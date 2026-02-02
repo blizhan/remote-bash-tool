@@ -83,6 +83,7 @@ asyncio.run(main())
 
 - CI：`.github/workflows/ci.yml` 会在 push/PR 时运行测试。
 - 发布：`.github/workflows/publish.yml` 会在推送 `v*` 标签时构建并发布到 PyPI（使用 Trusted Publishing）。
+- 首次发布：如果 PyPI 还没有该项目，先用 API Token 完成首发；首发后再在 PyPI 配置 Trusted Publisher 并切回 OIDC。
 
 发布步骤示例：
 
