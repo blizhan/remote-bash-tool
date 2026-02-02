@@ -46,16 +46,10 @@ def _load_ssh_config(ssh_config_path: Path, host_alias: str) -> dict[str, Any]:
             if len(parts) != 2:
                 continue
             key, value = parts[0].lower(), parts[1].strip()
-            if key == "hostname":
-                config["hostname"] = value
-            elif key == "user":
-                config["user"] = value
-            elif key == "port":
-                config["port"] = value
-            elif key == "identityfile":
+            if key == "identityfile":
                 config.setdefault("identityfile", []).append(value)
-            elif key == "proxycommand":
-                config["proxycommand"] = value
+            elif key not in config and key in ("hostname", "user", "port", "proxycommand"):
+                config[key] = value
     return config
 
 
