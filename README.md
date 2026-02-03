@@ -5,17 +5,18 @@ OpenCode 自定义工具：通过 SSH（读取 `~/.ssh/config`）在远程机器
 OpenCode custom tool: run bash commands on remote hosts via SSH (reads `~/.ssh/config`), powered by `asyncssh` with async support.
 
 
-## Install (uv)
+## Install
 
 ```bash
-uv venv
-uv sync
+uv add remote-bash-tool
 ```
 
 
-## Install to OpenCode (LLM-ready)
-
+## Install to OpenCode
+Tell your AI to install the tool:
+```
 Install the remote-ssh tool from https://github.com/blizhan/remote-bash-tool//blob/main/.opencode/INSTALL.md
+```
 
 
 ## Usage
