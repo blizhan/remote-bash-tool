@@ -13,6 +13,11 @@ uv sync
 ```
 
 
+## Install to OpenCode (LLM-ready)
+
+Install the remote-ssh tool from https://github.com/blizhan/remote-bash-tool//blob/main/.opencode/INSTALL.md
+
+
 ## Usage
 
 示例：在终端中直接执行（无需单独脚本文件）：
