@@ -76,32 +76,6 @@ asyncio.run(main())
 ```
 
 
-## OpenCode config (optional)
-
-1. 将工具模块挂载到 OpenCode（示例配置，参考 OpenCode 自定义工具指南进行调整）：
-
-1. Register the tool module in OpenCode (example config, adjust per OpenCode docs):
-
-   ```yaml
-   tools:
-     - name: remote_bash
-       module: remote_bash_tool.tool
-       entrypoint: run
-   ```
-
-3. 在 OpenCode 中调用工具：
-
-3. Call the tool in OpenCode:
-
-   ```json
-   {
-     "host_alias": "prod-db",
-     "command": "df -h",
-     "timeout": 10,
-     "stream_output": true
-   }
-   ```
-
 
 ## CI & PyPI Publishing
 
